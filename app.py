@@ -11,7 +11,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 # Configuração do banco de dados PostgreSQL via variável de ambiente
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('dibloteca_user')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Inicializa o banco com SQLAlchemy
@@ -92,3 +92,4 @@ def deletar_livro(id):
 
 if __name__ == '__main__':
     app.run(debug=True)
+# postgresql://dibloteca_user:C9rGGnBE3N16KhmOS5WxlCCkDWXyIYOb@dpg-d1bijmodl3ps73eo9fq0-a/dibloteca
