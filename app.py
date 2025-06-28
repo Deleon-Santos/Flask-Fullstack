@@ -10,35 +10,35 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-# Corrigir URL se necessário
-db_url = os.environ.get('DATABASE_URL')
+#configurações padão do postgres
+db_url = os.environ.get('DATABASE_URL') #aqui carregamos a variável de ambiente DATABASE_URL com a URL e senha do banco de dados
 app.config['SQLALCHEMY_DATABASE_URI'] = db_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-# Modelo do banco
-class Livro(db.Model):
+
+class Livro(db.Model): #modelo do banco de dados
     __tablename__ = 'livros'
     id = db.Column(db.Integer, primary_key=True)
     titulo = db.Column(db.String(200), nullable=False)
     autor = db.Column(db.String(200), nullable=False)
 
-# Cria as tabelas no banco (executa uma vez ao iniciar)
+
 with app.app_context():
     db.create_all()
 
+#rota para carregar a pagina inicial
 @app.route('/')
 def index():
     return render_template('index.html')
 
-# Retorna todos os livros
+#rotas para operações no banco
 @app.route('/bibliotecas', methods=['GET'])
 def get_livros():
     livros = Livro.query.all()
     return jsonify([{'id': l.id, 'titulo': l.titulo, 'autor': l.autor} for l in livros]), 200
 
-# Retorna livro por ID
 @app.route('/bibliotecas/<int:id>', methods=['GET'])
 def get_livro_por_id(id):
     livro = Livro.query.get(id)
@@ -46,29 +46,24 @@ def get_livro_por_id(id):
         return jsonify({'id': livro.id, 'titulo': livro.titulo, 'autor': livro.autor}), 200
     return jsonify({'message': 'Livro não encontrado!'}), 404
 
-# Adiciona um novo livro
 @app.route('/bibliotecas', methods=['POST'])
 def adicionar_livro():
     dados = request.get_json()
     titulo = dados.get('titulo')
     autor = dados.get('autor')
-
     if not titulo or not autor:
         return jsonify({'message': 'Campos obrigatórios: titulo e autor'}), 400
 
     novo_livro = Livro(titulo=titulo, autor=autor)
     db.session.add(novo_livro)
     db.session.commit()
-
     return jsonify({'id': novo_livro.id, 'titulo': novo_livro.titulo, 'autor': novo_livro.autor}), 201
 
-# Atualiza um livro
 @app.route('/bibliotecas/<int:id>', methods=['PUT'])
 def atualizar_livro(id):
     dados = request.get_json()
     titulo = dados.get('titulo')
     autor = dados.get('autor')
-
     if not titulo or not autor:
         return jsonify({'message': 'Campos obrigatórios: titulo e autor'}), 400
 
@@ -80,7 +75,6 @@ def atualizar_livro(id):
         return jsonify({'id': livro.id, 'titulo': livro.titulo, 'autor': livro.autor}), 200
     return jsonify({'message': 'Livro não encontrado!'}), 404
 
-# Deleta um livro
 @app.route('/bibliotecas/<int:id>', methods=['DELETE'])
 def deletar_livro(id):
     livro = Livro.query.get(id)
@@ -91,7 +85,6 @@ def deletar_livro(id):
     return jsonify({'message': 'Livro não encontrado!'}), 404
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
+    port = int(os.environ.get('PORT', 5000))#porta padrão para o app
     app.run(host='0.0.0.0', port=port)
     
-# postgresql://dibloteca_user:C9rGGnBE3N16KhmOS5WxlCCkDWXyIYOb@dpg-d1bijmodl3ps73eo9fq0-a/dibloteca
