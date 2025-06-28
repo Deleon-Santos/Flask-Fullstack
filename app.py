@@ -91,7 +91,7 @@ def deletar_livro(id):
     return jsonify({'message': 'Livro não encontrado!'}), 404
 
 if __name__ == '__main__':
-    # port = int(os.environ.get('PORT', 5000))
-    app.run(debug=True)
-    #app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
+    
 # postgresql://dibloteca_user:C9rGGnBE3N16KhmOS5WxlCCkDWXyIYOb@dpg-d1bijmodl3ps73eo9fq0-a/dibloteca
