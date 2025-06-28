@@ -10,11 +10,11 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-# Configuração do banco de dados PostgreSQL via variável de ambiente
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+# Corrigir URL se necessário
+db_url = os.environ.get('DATABASE_URL')
+app.config['SQLALCHEMY_DATABASE_URI'] = db_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# Inicializa o banco com SQLAlchemy
 db = SQLAlchemy(app)
 
 # Modelo do banco
@@ -91,5 +91,7 @@ def deletar_livro(id):
     return jsonify({'message': 'Livro não encontrado!'}), 404
 
 if __name__ == '__main__':
+    # port = int(os.environ.get('PORT', 5000))
     app.run(debug=True)
+    #app.run(debug=True)
 # postgresql://dibloteca_user:C9rGGnBE3N16KhmOS5WxlCCkDWXyIYOb@dpg-d1bijmodl3ps73eo9fq0-a/dibloteca
