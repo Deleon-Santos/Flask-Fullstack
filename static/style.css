@@ -115,6 +115,7 @@ li {
   overflow-y: auto;
   border: 1px solid #ddd; 
 }
+
 @media screen and (max-width: 560px) {
   .interface {
     grid-template-columns: 1fr; 
