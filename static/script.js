@@ -1,4 +1,4 @@
-const API_URL = 'https://flask-fullstack-9.onrender.com/bibliotecas';
+const API_URL = 'https://flask-fullstack-8.onrender.com/bibliotecas';
 // url da API foi substituida pela URL do render.com pois a aplicção ja esta rodando
     async function listarLivros() {
       try {
