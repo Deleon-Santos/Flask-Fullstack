@@ -76,6 +76,8 @@ const API_URL = 'https://flask-fullstack-8.onrender.com/bibliotecas';
       });
       alert('Livro enviado com sucesso!');
       listarLivros();
+      document.getElementById('id-atualizar').value = '';
+      document.getElementById('titulo-atualizar').value = '';
     }
 
     async function deletarLivro() {
@@ -88,6 +90,7 @@ const API_URL = 'https://flask-fullstack-8.onrender.com/bibliotecas';
       await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
       alert('Livro excluido com sucesso!');
       listarLivros();
+      document.getElementById('id-deletar').value = '';
     }
 
     async function buscarLivroPorId() {
@@ -106,8 +109,10 @@ const API_URL = 'https://flask-fullstack-8.onrender.com/bibliotecas';
       } else {
         resultado.textContent = 'Livro não encontrado!';
       }
+      document.getElementById('id-buscar').value = '';
     }
-
+    
+    
 
 
 
