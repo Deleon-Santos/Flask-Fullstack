@@ -1,10 +1,10 @@
 # 📚 Gestão de Biblioteca – Full-stack
-![Projeto](./img/estrutura%20do%20projeto.png)
+![Projeto](./img/interface%20do%20projeto.png)
 
 ## 🌍 Link da Aplicação (deploy)
 
 > 🔗 Acesse a aplicação em produção:  
-[https://flask-fullstack-6.onrender.com](https://flask-fullstack-8.onrender.com)
+[https://flask-fullstack-8.onrender.com](https://flask-fullstack-8.onrender.com)
 
 ---
 
@@ -57,13 +57,6 @@ Este projeto é um sistema de gestão de biblioteca com operações **CRUD** com
 |--------|-----------|
 | ![Render](https://img.shields.io/badge/-Render-46E3B7?style=flat&logo=render&logoColor=white) | Hospedagem de back-end com PostgreSQL integrado |
 | ![dotenv](https://img.shields.io/badge/-dotenv-4D4D4D?style=flat&logo=dotenv&logoColor=white) | Gerenciamento de variáveis de ambiente (segurança) |
-
----
-
-## 🌍 Link da Aplicação (deploy)
-
-> 🔗 Acesse a aplicação em produção:  
-[https://flask-fullstack-6.onrender.com](https://flask-fullstack-8.onrender.com)
 
 ---
 
