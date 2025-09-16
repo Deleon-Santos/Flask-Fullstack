@@ -39,7 +39,7 @@ with app.app_context():
 #rota para carregar a pagina inicial
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return('API de Biblioteca com Flask e PostgreSQL. Acesse /bibliotecas para ver os livros.')
 
 #rotas para operações no banco
 @app.route('/bibliotecas', methods=['GET'])
