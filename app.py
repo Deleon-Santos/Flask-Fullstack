@@ -11,7 +11,12 @@ from flask_cors import CORS
 
 
 app = Flask(__name__)
-CORS(app, resources={r"/bibliotecas/*": {"origins": "https://meusite.com"}})
+CORS(app, resources={r"/*": {"origins": [
+    "http://127.0.0.1:5500",    
+    "http://localhost:3000",     
+    "https://deleon-santos.github.io"  
+]}})
+
 
 #configurações padão do postgres
 db_url = os.environ.get('DATABASE_URL') #aqui carregamos a variável de ambiente DATABASE_URL com a URL e senha do banco de dados
