@@ -1,8 +1,0 @@
-services:
-  - type: web
-    name: flask-fullstack
-    env: python
-    buildCommand: "echo '>>> Usando render.yaml' && pip install -r requirements.txt"
-    startCommand: "gunicorn app:app"
-    pythonVersion: 3.11
-    

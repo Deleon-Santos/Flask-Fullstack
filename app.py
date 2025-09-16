@@ -7,8 +7,11 @@ através de uma interface gráfica gerada com HTML, CSS e JavaScript.
 import os
 from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+CORS(app, resources={r"/bibliotecas/*": {"origins": "https://meusite.com"}})
 
 #configurações padão do postgres
 db_url = os.environ.get('DATABASE_URL') #aqui carregamos a variável de ambiente DATABASE_URL com a URL e senha do banco de dados
