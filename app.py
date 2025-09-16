@@ -7,8 +7,15 @@ através de uma interface gráfica gerada com HTML, CSS e JavaScript.
 import os
 from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": [
+    "http://127.0.0.1:5500",     
+    "http://localhost:3000",     
+    "https://deleon-santos.github.io"  
+]}})
 
 # Configuração do banco de dados PostgreSQL via variável de ambiente
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
@@ -30,7 +37,7 @@ with app.app_context():
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return jsonify({"message": "API Flask rodando com sucesso!"})
 
 # Retorna todos os livros
 @app.route('/bibliotecas', methods=['GET'])
@@ -92,4 +99,3 @@ def deletar_livro(id):
 
 if __name__ == '__main__':
     app.run(debug=True)
-# postgresql://dibloteca_user:C9rGGnBE3N16KhmOS5WxlCCkDWXyIYOb@dpg-d1bijmodl3ps73eo9fq0-a/dibloteca
